@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.5)
+PROJECT(mypet)
+
+
+# 将指定文件夹下的所有.cpp文件添加到源文件列表中
+aux_source_directory("./src" SRC_FILES)
+
+# 添加指定头文件
+include_directories("include")
+
+# 添加WinMain入口
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
+
+# 添加可执行文件或库的构建目标
+add_executable(mypet ${SRC_FILES})
+
+# # 设置编译选项
+target_compile_options(mypet PRIVATE -Wall)
+
+# # 设置编译特性
+target_compile_features(mypet PRIVATE cxx_std_11)
+
+target_link_libraries(mypet)
